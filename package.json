@@ -1,0 +1,23 @@
+{
+  "name": "koa-test",
+  "version": "1.0.0",
+  "description": "koa for web framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zy13/koa-test.git"
+  },
+  "author": "zyuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zy13/koa-test/issues"
+  },
+  "homepage": "https://github.com/zy13/koa-test#readme",
+  "devDependencies": {
+    "koa": "^2.5.1"
+  }
+}
