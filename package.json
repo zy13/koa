@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/zy13/koa-test#readme",
   "devDependencies": {
-    "koa": "^2.5.1"
+    "koa": "^2.5.1",
+    "nodemon": "^2.0.7"
   }
 }
