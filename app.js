@@ -1,38 +1,30 @@
-// Koa => node_modules/koa/lib/application.js => class Application
 const Koa = require('koa')
+const koaStaticCache = require('koa-static-cache')
+const KoaRouter = require('koa-router')
 
-// 初始化一个Application对象
 const app = new Koa()
+const router = new KoaRouter()
 
+const quotes = [
+  '虽然我个子矮，但我发际线高啊！',
+  '有些事情做不完，就留到明天做吧。运气好的话，明天死了就不用做了。',  
+  '善良没用，你得漂亮。',  
+  '好好活下去 每天都有新打击。',  
+  '活着的时候把自己搞得好看一点，这样你就不会死得太难看。',  
+  '世上无难事 只要肯放弃。',  
+  '加油，你是最胖的！' 
+]
 
-// 中间件，返回的是一个异步函数
-app.use(async (ctx, next) => {
-  // 鉴权
-  console.log(111)
-  await next()
-  console.log(2222)
-  ctx.body = 'hello'
+app.use(koaStaticCache({
+  prefix: '/public',
+  dir: './public',
+  gzip: true,
+  dynamic: true
+}))
+
+router.get('/quote', async ctx=> {
+  ctx.body = quotes[Math.floor(Math.random()*quotes.length)]
 })
 
-app.use(() => {
-  return new Promise(resolve=>{
-    setTimeout(() => {
-      console.log('aaaa')
-      resolve()
-    }, 1000);
-  })
-})
-
-// 监听指定端口 => 间接创建了一个http.Server并调用listen方法
+app.use(router.routes())
 app.listen(8888)
-
-
-// 关于compose => middleware[fn1, fn2, fn3]
-
-// Promise.resolve(fn1).then(fn2).then(fn3) 的逻辑：
-// fn1执行完后自动执行then后的fn2然后再执行then后面的fn3,
-// 这么做是没有办法控制fn的执行的，如果fn1中执行完成了任务，返现不需要，不允许继续向后执行，那么就会有问题。
-
-// Promise.resolve(fn1(fn2(fn3)))的逻辑：
-// 执行fn1,然后下一个任务不是自动执行，它会在fn1的内部逻辑中选择性的执行fn2
-// 这样做有利于流程控制: 例如用户鉴权
