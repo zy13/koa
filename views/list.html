@@ -11,66 +11,23 @@
       </div>
       <div class="c clearfix">
         <ul class="list clearfix">
-          <li class="item">
-            <div class="figure">
-              <a href="">
-                <img
-                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/2b33944db1a5082d123fca20bc126665.jpg"
-                  alt=""
-                />
-              </a>
-            </div>
-            <h3 class="title">
-              <a href=""> Note 9 Pro </a>
-            </h3>
-            <p class="desc">一亿像素夜景相机，120Hz六档变速高刷屏</p>
-            <p class="price"><span class="num">1599</span>元</p>
-          </li>
-          <li class="item">
-            <div class="figure">
-              <a href="">
-                <img
-                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/2b33944db1a5082d123fca20bc126665.jpg"
-                  alt=""
-                />
-              </a>
-            </div>
-            <h3 class="title">
-              <a href=""> Note 9 Pro </a>
-            </h3>
-            <p class="desc">一亿像素夜景相机，120Hz六档变速高刷屏</p>
-            <p class="price"><span class="num">1599</span>元</p>
-          </li>
-          <li class="item">
-            <div class="figure">
-              <a href="">
-                <img
-                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/2b33944db1a5082d123fca20bc126665.jpg"
-                  alt=""
-                />
-              </a>
-            </div>
-            <h3 class="title">
-              <a href=""> Note 9 Pro </a>
-            </h3>
-            <p class="desc">一亿像素夜景相机，120Hz六档变速高刷屏</p>
-            <p class="price"><span class="num">1599</span>元</p>
-          </li>
-          <li class="item">
-            <div class="figure">
-              <a href="">
-                <img
-                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/2b33944db1a5082d123fca20bc126665.jpg"
-                  alt=""
-                />
-              </a>
-            </div>
-            <h3 class="title">
-              <a href=""> Note 9 Pro </a>
-            </h3>
-            <p class="desc">一亿像素夜景相机，120Hz六档变速高刷屏</p>
-            <p class="price"><span class="num">1599</span>元</p>
-          </li>
+          {%for item in items%}
+            <li class="item">
+              <div class="figure">
+                <a href="">
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/2b33944db1a5082d123fca20bc126665.jpg"
+                    alt=""
+                  />
+                </a>
+              </div>
+              <h3 class="title">
+                <a href="">{{item.name}}</a>
+              </h3>
+              <p class="desc">一亿像素夜景相机，120Hz六档变速高刷屏</p>
+              <p class="price"><span class="num">{{(item.price/100).toFixed(2)}}</span>元</p>
+            </li>
+          {%endfor%}
         </ul>
     </div>
   </div>

@@ -5,31 +5,13 @@
     </div>
     <div class="header-nav fl">
       <ul class="nav-list clearfix">
-        <li class="header-item">
-          <a href="" class="link">
-            <span class="text">手机</span>
-          </a>
-        </li>
-        <li class="header-item">
-          <a href="" class="link">
-            <span class="text">笔记本</span>
-          </a>
-        </li>
-        <li class="header-item">
-          <a href="" class="link">
-            <span class="text">电视机</span>
-          </a>
-        </li>
-        <li class="header-item">
-          <a href="" class="link">
-            <span class="text">家电</span>
-          </a>
-        </li>
-        <li class="header-item">
-          <a href="" class="link">
-            <span class="text">智能硬件</span>
-          </a>
-        </li>
+        {%for category in categories%}
+          <li class="header-item">
+            <a href="" class="link">
+              <span class="text">{{category.name}}</span>
+            </a>
+          </li>
+        {% endfor %}
       </ul>
     </div>
     <ul class="header-user fr">

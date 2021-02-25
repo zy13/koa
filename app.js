@@ -2,6 +2,8 @@ const Koa = require('koa')
 const koaStaticCache = require('koa-static-cache')
 const KoaRouter = require('koa-router')
 const koaNunjucks = require('./middlewares/koa-nunjucks')
+const categories = require('./data/categories.json')
+const items = require('./data/items.json')
 
 
 const app = new Koa()
@@ -21,14 +23,18 @@ app.use(koaStaticCache({
 // 首页
 router.get('/', async ctx => {
   ctx.body = ctx.render('index', {
-    title: 'nunjucks模板渲染1'
+    title: '首页',
+    categories,
+    items
   })
 })
 
 // 列表页
 router.get('/list', async ctx => {
   ctx.body = ctx.render('list', {
-    title: '列表'
+    title: '列表',
+    categories,
+    items
   })
 })
 
