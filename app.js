@@ -60,6 +60,8 @@ router.get('/detail/:detailId', async ctx => {
     'select * from items where id=?',
     [detailId]
   )
+
+  
   
   let limit = 5
   // 第一页：offset=0；第二页：offset = 5; 
@@ -74,6 +76,15 @@ router.get('/detail/:detailId', async ctx => {
     'select * from comments where detail_id=? order by id desc limit ? offset ?',
     [detailId,limit,offset]
   )
+
+  // 总的页码数
+  let pages = 0
+  let [[{ count }]] = await ctx.connection.query(
+    'select count(*) as count from comments where detail_id=?',
+    [detailId]
+  )
+  pages = Math.ceil( count/limit )
+
   comments = comments.map(item => {
     return {
       ...item,
@@ -85,7 +96,9 @@ router.get('/detail/:detailId', async ctx => {
     detailId,
     categories,
     item,
-    comments
+    comments,
+    pages,
+    page
   })
 })
 
