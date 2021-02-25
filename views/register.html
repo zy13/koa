@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+
+{% block link%}
+<link rel="stylesheet" href="/public/static/css/sign.css">
+{%endblock%}
+
+{% block main%}
+<div class="main">
+  <div class="container">
+    <div class="box">
+      <div class="h">
+        <h2 class="title">注册</h2>
+      </div>
+      <div class="c">
+          <form method="post" action="/register" enctype="application/x-www-form-urlencoded" class="sign-form"> 
+              <p>
+                  <label for="">用户名：</label>
+                  <input name="username" type="text" class="input" />
+              </p>
+              <p>
+                  <label for="">密码：</label>
+                  <input name="password" type="password" class="input" />
+              </p>
+              <p>
+                <button class="btn btn-primary">注册</button>
+                <a href="" class="btn">我有账号，立即登录</a>
+              </p>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
