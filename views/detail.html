@@ -58,22 +58,14 @@
           </form> 
         </div>
         <div class="comment-list">
+          {%for comment in comments%}
           <div class="comment">
             <a href="/comment/user?user_id=424027617" class="avatar" style="background-image:url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/cb1bd61ad71c45a4f67f09b075463944.jpeg?thumb=1&w=468&h=1228&f=webp&q=90)"></a>
             <a href="" class="user">zMouse</a>
-            <div class="datetime">2020-11-02 12:00:12</div>
-            <div class="content">
-              我使用小米7年了，是一位真正的老米粉。 小米这几年成长我是看在眼里的，尤其是有的卢总加入，让红米更具有实力又能打。是卢总让我们能用上蛟龙865的平民价。是小米让我们能。用到科技的乐趣，让每个人都能享受。希望小米集团不忘初心。所有的手机自从有了小米的进入手机行业，变得更实惠更平民。小米的价值观非常的棒。
-            </div>
+            <div class="datetime">{{comment.formateDatetime}}</div>
+            <div class="content">{{comment.content}}</div>
           </div>
-          <div class="comment">
-            <a href="/comment/user?user_id=424027617" class="avatar" style="background-image:url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/cb1bd61ad71c45a4f67f09b075463944.jpeg?thumb=1&w=468&h=1228&f=webp&q=90)"></a>
-            <a href="" class="user">zMouse</a>
-            <div class="datetime">2020-11-02 12:00:12</div>
-            <div class="content">
-              我使用小米7年了，是一位真正的老米粉。 小米这几年成长我是看在眼里的，尤其是有的卢总加入，让红米更具有实力又能打。是卢总让我们能用上蛟龙865的平民价。是小米让我们能。用到科技的乐趣，让每个人都能享受。希望小米集团不忘初心。所有的手机自从有了小米的进入手机行业，变得更实惠更平民。小米的价值观非常的棒。
-            </div>
-          </div>
+          {%endfor%}
         </div>
         <div class="pagination">
           <a href="">首页</a>
