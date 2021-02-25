@@ -18,9 +18,17 @@ app.use(koaStaticCache({
   dynamic: true
 }))
 
+// 首页
 router.get('/', async ctx => {
   ctx.body = ctx.render('index', {
     title: 'nunjucks模板渲染1'
+  })
+})
+
+// 列表页
+router.get('/list', async ctx => {
+  ctx.body = ctx.render('list', {
+    title: '列表'
   })
 })
 
