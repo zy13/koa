@@ -1,9 +1,10 @@
 const Koa = require('koa')
 const koaStaticCache = require('koa-static-cache')
 const KoaRouter = require('koa-router')
-const koaBody = require('koa-body')
 const koaNunjucks = require('./middlewares/koa-nunjucks')
 const koaConnection = require('./middlewares/koa-connection')
+// const categories = require('./data/categories.json')
+// const items = require('./data/items.json')
 
 const app = new Koa()
 const router = new KoaRouter()
@@ -73,17 +74,6 @@ router.get('/detail/:detailId', async ctx => {
     item,
     categories
   })
-})
-
-// 数据量比较大的请求，使用post提交数据
-router.post('/comment', koaBody(), async ctx => {
-  // 默认情况下，koa不会解析post提交的正文请求中的数据，其解析头部和url的信息
-  let { content, detailId } = ctx.request.body
-  let [rs] = await ctx.connection.query(
-    'insert into comments (content,datatime,detail_id) values (?,?,?)',
-    [content,Date.now(),detailId]
-  )
-  ctx.body = '评论成功'
 })
 
 app.use(router.routes())

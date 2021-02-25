@@ -47,9 +47,10 @@
       </div>
       <div class="c clearfix">
         <div class="comment-post">
-          <form action="">
+          <form method="post" action="/comment" enctype="application/x-www-form-urlencoded">
             <p>
-              <textarea class="input" rows="5"></textarea>
+              <textarea name="content" class="input" rows="5"></textarea>
+              <input type="hidden" name="detailId" value="{{item.id}}">
             </p>
             <p>
               <button class="btn btn-primary">提交</button>
