@@ -6,12 +6,13 @@ const config = {
   database: 'kkb',
   port: 3307
 }
-
+let connection
 module.exports = () => {
   return async (ctx, next) => {
-    if(!ctx.connection) {
-      ctx.connection = await mysql.createConnection(config)
+    if(!connection) {
+      connection = await mysql.createConnection(config)
     }
+    ctx.connection = connection
     await next()
   }
 }

@@ -1,13 +1,13 @@
 <header class="app-header">
   <div class="container clearfix">
     <div class="header-logo">
-      <a href="index.html" title="" class="logo ir">小米官网</a>
+      <a href="/" title="" class="logo ir">小米官网</a>
     </div>
     <div class="header-nav fl">
       <ul class="nav-list clearfix">
         {%for category in categories%}
           <li class="header-item">
-            <a href="" class="link">
+            <a href="/list/{{category.id}}" class="link">
               <span class="text">{{category.name}}</span>
             </a>
           </li>

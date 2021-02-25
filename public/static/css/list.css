@@ -45,6 +45,13 @@
   width: 100%;
   height: 358px;
 }
+.item .figure a{
+  display: block;
+  width: 400px;
+  margin: auto;
+  height: 100%;
+  padding-top: 20px;
+}
 .item .figure img {
   width: 100%;
   height: 100%;

@@ -39,18 +39,12 @@ router.get('/', async ctx => {
 })
 
 // 列表页
-router.get('/list/:categoryId', async ctx => {
-  // 因为url在请求过程中再携带一些动态的额外数据，这个数据会影响当前从数据库中查询的结果
-  // 客户端发送请求可以发送数据：1.url 2.请求头 3.请求正文
-  // koa-router 会在分析当前动态url时候，把/list/1或者/list/2后面:匹配的内容单独解析出来，
-  // 然后存放到ctx.request.params.categoryId
-  let { categoryId } = ctx.request.params
+router.get('/list', async ctx => {
   const [categories] = await ctx.connection.query(
     'select * from categories'
   )
   const [items] = await ctx.connection.query(
-    'select * from items where category_id=?',
-    [categoryId]
+    'select * from items limit 10'
   )
   ctx.body = ctx.render('list', {
     title: '列表',

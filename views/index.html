@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block link%}
-<link rel="stylesheet" href="./public/static/css/index.css" />
+<link rel="stylesheet" href="/public/static/css/index.css" />
 {% endblock %}
 {% block main %}   
 <div class="main">
@@ -16,10 +16,10 @@
         <ul class="list clearfix">
           {%for item in items%}
             <li class="item">
-              <a href="">
+              <a href="/list/{{item.id}}">
                 <div class="figure">
                   <img
-                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/4e75e528fb468aee107f551179aa0799.jpg?thumb=1&w=400&h=400&f=webp&q=90"
+                    src="/public/images/{{item.cover}}"
                     alt=""
                   />
                 </div>
