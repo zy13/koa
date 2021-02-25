@@ -59,21 +59,5 @@ router.get('/list/:categoryId', async ctx => {
   })
 })
 
-// 详情页
-router.get('/detail/:detailId', async ctx => {
-  let { detailId } = ctx.request.params
-  const [categories] = await ctx.connection.query(
-    'select * from categories'
-  )
-  const [[item]] = await ctx.connection.query(
-    'select * from items where id=?',
-    [detailId]
-  )
-  ctx.body = ctx.render('detail',{
-    title: '详情页',
-    item
-  })
-})
-
 app.use(router.routes())
 app.listen(8888)
