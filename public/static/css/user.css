@@ -52,6 +52,7 @@
     border-radius: 50%;
     overflow: hidden;
     background-repeat: no-repeat;
+    background-size: contain;
 }
 .avatar-edit {
     position: absolute;

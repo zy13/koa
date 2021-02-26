@@ -197,44 +197,5 @@ router.post('/login', koaBody(), async ctx => {
   }
 })
 
-router.get('/user/:uid', koaVerify, async ctx => {
-  const [categories] = await ctx.connection.query(
-    'select * from categories'
-  )
-  const [[{avatar}]]=  await ctx.connection.query(
-    'select * from users where id=?',
-    [ctx.state.user.uid]
-  )
-
-  ctx.render('user', {
-    title: '用户中心',
-    categories,
-    avatar:  avatar.replace(/\\/g,'/') // avatar.split('\\').join('/')
-  })
-})
-
-router.post('/avatar', koaVerify, koaBody({
-  // 处理formdata格式数据
-  multipart: true, // 处理二进制数据
-  // 普通字符串数据也可以通过formdata格式提交
-  // 如果提交的数据特殊数据，如文件二进制，需要另外设置
-  formidable: { // 上传文件支持
-    uploadDir: './public/avatars', // 上传到指定目录
-    keepExtensions: true // 保留后缀
-  }
-}), async ctx => {
-  // 经过koaBody处理，文件数据挂载到ctx.request.files
-  const { avatar } = ctx.request.files
-  const filePath = avatar.path
-
-  // 头像路径更新到users表格中
-  await ctx.connection.query(
-    'update users set avatar=? where id=?',
-    [filePath, ctx.state.user.uid]
-  )
-  // 重定向
-  ctx.redirect(`/user/${ctx.state.user.uid}`)
-})
-
 app.use(router.routes())
 app.listen(8888)
