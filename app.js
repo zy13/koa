@@ -88,8 +88,8 @@ router.get('/detail/:detailId', koaVerify, async ctx => {
   // limit 条数 => 限制查询多少条
   // offset 条数 => 从第几条开始，默认从0
   let [comments] = await ctx.connection.query(
-    'select * from comments where detail_id=? order by id desc limit ? offset ?',
-    [detailId,limit,offset]
+    'select * from comments where detail_id=? and uid =? order by id desc limit ? offset ?',
+    [detailId,ctx.state.user.uid, limit,offset]
   )
 
   // 总的页码数
@@ -123,8 +123,8 @@ router.post('/comment', koaVerify, koaBody(), async ctx => {
     'select * from categories'
   )
   const [rs] = await ctx.connection.query(
-    'insert into comments (content, datatime, detail_id) values (?,?,?)',
-    [content, Date.now(), detailId]
+    'insert into comments (content, datatime, detail_id, uid) values (?,?,?,?)',
+    [content, Date.now(), detailId,ctx.state.user.uid]
   )
   ctx.render('message',{
     categories,
