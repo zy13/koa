@@ -21,7 +21,7 @@ module.exports = (options) => {
         // })
         ctx.body = nunjucks.render(`${viewDir}/${tplName}.html`, {
           ...data,
-          user: JSON.parse(ctx.state.user) || {}// 统一挂载用户信息
+          user: ctx.state.user// 统一挂载用户信息
         })
       }
     }

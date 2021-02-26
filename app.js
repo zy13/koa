@@ -13,7 +13,7 @@ const router = new KoaRouter()
 // cookie统一在ctx.render时候获取
 app.use(async (ctx, next) => {
   if(ctx.cookies.get('user')) {
-    ctx.state.user = ctx.cookies.get('user')
+    ctx.state.user = JSON.parse(ctx.cookies.get('user'))
   }
   await next()
 })
