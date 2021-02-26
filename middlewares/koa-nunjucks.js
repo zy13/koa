@@ -15,9 +15,13 @@ module.exports = (options) => {
   // 返回异步函数
   return async (ctx, next) => {
     if(!ctx.render) {
-      ctx.render = (tplName, data) => {
-        return nunjucks.render(`${viewDir}/${tplName}.html`, {
-          ...data
+      ctx.render = (tplName, data) => {        
+        // return nunjucks.render(`${viewDir}/${tplName}.html`, {
+        //   ...data
+        // })
+        ctx.body = nunjucks.render(`${viewDir}/${tplName}.html`, {
+          ...data,
+          user: ctx.state.user // 统一挂载用户信息
         })
       }
     }
