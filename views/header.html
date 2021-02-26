@@ -15,21 +15,24 @@
       </ul>
     </div>
     <ul class="header-user fr">
-      <li class="header-item">
-        <a href="/register" class="link">
-            <span class="text">注册</span>
-          </a>
-      </li>
-      <li class="header-item">
-        <a href="/login" class="link">
-            <span class="text">登录</span>
-          </a>
-      </li>
-      <li class="header-item">
-        <a href="" class="link">
-            <span class="text">zMouse</span>
-          </a>
-      </li>
+      {%if user%}
+        <li class="header-item">
+          <a href="" class="link">
+              <span class="text">{{user.username}}</span>
+            </a>
+        </li>
+      {%else%}
+        <li class="header-item">
+          <a href="/register" class="link">
+              <span class="text">注册</span>
+            </a>
+        </li>
+        <li class="header-item">
+          <a href="/login" class="link">
+              <span class="text">登录</span>
+            </a>
+        </li>
+      {%endif%}
     </ul> 
   </div>
 </header>

@@ -150,6 +150,7 @@ router.get('/login', async ctx => {
   const [categories] = await ctx.connection.query(
     'select * from categories'
   )
+  // console.log(JSON.parse(ctx.state.user).username)
   ctx.render('login',{
     title: '登录',
     categories
