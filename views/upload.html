@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <button>文件上传</button>
+  </div>
+  <h1>相册</h1>
+  <ul>
+    {% for attachment in attachments %}
+      <li>
+        <span>{{attachments.length}}</span>
+        <img src="/{{attachment.path}}" alt="">
+      </li>
+    {%endfor%}
+  </ul>
+</body>
+<script>
+  const input = document.createElement('input')
+  input.type = 'file'
+  input.name = 'avatar'
+
+  const form = document.createElement('form')
+  form.method = 'post'
+  form.action = '/upload'
+  form.enctype = 'multipart/form-data'
+  form.appendChild(input)
+
+  document.querySelector('button').onclick = function() {
+    input.click()
+  }
+
+  input.onchange = function() {
+    document.body.appendChild(form)
+    form.submit()
+  }
+</script>
+</html>
