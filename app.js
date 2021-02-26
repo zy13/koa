@@ -2,18 +2,26 @@ const Koa = require('koa')
 const KoaRouter = require('koa-router')
 const koaStaticCache = require('koa-static-cache')
 const koaBody = require('koa-body')
+const dayjs = require('dayjs')
 const koaConnection = require('./middlewares/koa-connection')
 const koaNunjucks = require('./middlewares/koa-nunjucks')
-const dayjs = require('dayjs')
+const koaVerify = require('./middlewares/koa-verify')
 
 const app = new Koa()
 const router = new KoaRouter()
 
+// 后端存储，不要泄露：主要用来生产加密的签名
+app.keys = ['kkb']
+
 // cookie中间件：处理当前用户信息
 // cookie统一在ctx.render时候获取
 app.use(async (ctx, next) => {
-  if(ctx.cookies.get('user')) {
-    ctx.state.user = JSON.parse(ctx.cookies.get('user'))
+  try {
+    ctx.state.user = JSON.parse(ctx.cookies.get('user', {
+      signed: true
+    }))
+  } catch (e) {
+    ctx.state.user = {}
   }
   await next()
 })
@@ -58,7 +66,7 @@ router.get('/list/:categoryId', async ctx => {
   })
 })
 
-router.get('/detail/:detailId', async ctx => {
+router.get('/detail/:detailId', koaVerify, async ctx => {
   const { detailId } = ctx.request.params
   let { page } = ctx.request.query
   page = page ? Number(page) : 1
@@ -109,7 +117,7 @@ router.get('/detail/:detailId', async ctx => {
   })
 })
 
-router.post('/comment', koaBody(), async ctx => {
+router.post('/comment', koaVerify, koaBody(), async ctx => {
   const { content, detailId } = ctx.request.body
   const [categories] = await ctx.connection.query(
     'select * from categories'
@@ -179,7 +187,9 @@ router.post('/login', koaBody(), async ctx => {
     ctx.cookies.set('user', JSON.stringify({
       uid: user.id,
       username: user.username
-    }))
+    }), {
+      signed: true // 增加签名，用于加密
+    })
     ctx.render('message', {
       categories,
       message: '登录成功'
