@@ -1,23 +1,16 @@
-# koa
-
-* package.json
-```
-通过命令npm init生成，用于描述项目名称、版本、作者、相关依赖等信息，其中scripts字段为脚本运行的命令行定义，dependencies为项目运行所需要的依赖，devDependencies为项目开发运行所需的依赖
-```
-
-* npm i module-name --save-dev
-```
-安装模块，项目开发过程中使用的模块，并保存模块信息到package.json中的devDependencies
-```
-
-* npm run dev: 开启服务端
-
-* gitignore
-```
-代码提交时，需要过滤掉的文件
-```
-
-* app.js
-```
-项目启动入口文件
-```
+1、nodejs搭建webserver
+- http模块
+- 搭建webServer的基本流程
+  - 1、创建一个webServer对象
+  - 2、注册请求回调函数
+  - 3、监听网络端口
+2、koa框架
+- koa四大核心对象：Application、Context、Request、Response
+- 中间件：koa-static-cache、nunjucks、koa-router、koa-body
+3、mysql应用
+- 数据库操作：增删改查、排序、分页
+4、文件上传及用户鉴权
+5 前后端交互
+· ajax之XMLHttpRequest和Fetch
+- 实现无刷新文件上传
+5、跨域解决方案，jwt鉴权
