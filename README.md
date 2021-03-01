@@ -18,6 +18,6 @@
 ## 5 前后端交互
 - ### ajax之XMLHttpRequest和Fetch
 - ### XMLHttpRequest实现文件上传
-- fetch实现文件上传
+- ### fetch实现文件上传
 
 ## 6、跨域解决方案，jwt鉴权
