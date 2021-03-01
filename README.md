@@ -1,8 +1,14 @@
 1、无刷新请求
-2、XMLHttpRequest对象
-3、文件上传
 
-4、练习
+2、XMLHttpRequest对象
+
+3、xhr实现文件上传
+
+4、Fect对象
+
+5、fetch实现文件上传
+
+6、练习
 ```
 1、上传完图片成功后，关闭上传窗口
 2、后端保存上传的图片到 static/upload 文件夹下以及数据库内（photos 表，字段如上次作业一致）
