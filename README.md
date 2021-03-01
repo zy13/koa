@@ -16,7 +16,8 @@
 ## 4、文件上传及用户鉴权
 
 ## 5 前后端交互
-· ajax之XMLHttpRequest和Fetch
-- 实现无刷新文件上传
+- ### ajax之XMLHttpRequest和Fetch
+- ### XMLHttpRequest实现文件上传
+- fetch实现文件上传
 
 ## 6、跨域解决方案，jwt鉴权
