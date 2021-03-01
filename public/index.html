@@ -8,14 +8,58 @@
 </head>
 <body>
   <button>获取数据</button>
+  <button>点击</button>
+  <form>
+    <input type="text" name="username">
+    <button>提交</button>
+  </form>
+  <ul></ul>
 </body>
 <script>
   let buttons = document.querySelectorAll('button')
+  let ul = document.querySelector('ul') 
+
+  // 获取数据
   buttons[0].onclick = function() {
     const xhr = new XMLHttpRequest()
-    xhr.open('get','/user', false)
+    xhr.open('get','/user')
     xhr.send()
-    console.log(xhr.responseText)
+    xhr.onload = function() {
+      let users = JSON.parse(xhr.responseText)
+      let lis = ''
+      // 获取响应头信息（所有）
+      console.log(xhr.getAllResponseHeaders())
+      users.map(user => {
+        lis += lis + `<li>${user.name}</li>`
+      })
+      ul.innerHTML = lis
+      console.table(users)
+    }
+  }
+
+  
+  buttons[1].onclick = function() {
+    const xhr = new XMLHttpRequest()
+    // xhr.open('post','/user?username=111')
+    xhr.open('post','/user/111')
+    xhr.send()
+    xhr.onload = function() {
+      alert(xhr.responseText)
+    }
+  }
+
+  // 提交数据：设置请求头-提交json格式的数据
+  buttons[2].onclick = function() {
+    const xhr = new XMLHttpRequest()
+    let data = {
+      username: document.querySelector('input[name="username"]').value
+    }
+    xhr.open('post','/user')
+    xhr.setRequestHeader('content-type', 'application/json')
+    xhr.send(JSON.stringify(data))
+    xhr.onload = function() {
+      alert(xhr.responseText)
+    }
   }
 </script>
 </html>
