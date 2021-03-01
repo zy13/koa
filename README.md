@@ -1,23 +1,14 @@
-# koa
+1、无刷新请求
+2、XMLHttpRequest对象
+3、文件上传
 
-* package.json
+4、练习
 ```
-通过命令npm init生成，用于描述项目名称、版本、作者、相关依赖等信息，其中scripts字段为脚本运行的命令行定义，dependencies为项目运行所需要的依赖，devDependencies为项目开发运行所需的依赖
-```
-
-* npm i module-name --save-dev
-```
-安装模块，项目开发过程中使用的模块，并保存模块信息到package.json中的devDependencies
-```
-
-* npm run dev: 开启服务端
-
-* gitignore
-```
-代码提交时，需要过滤掉的文件
-```
-
-* app.js
-```
-项目启动入口文件
+1、上传完图片成功后，关闭上传窗口
+2、后端保存上传的图片到 static/upload 文件夹下以及数据库内（photos 表，字段如上次作业一致）
+3、前端调用 /getPhotos 接口，获取后端保存的所有图片数据
+4、后端需要从数据库内获取上传图片的数据返回给前端
+5、前端基于图片数据显示图片
+6、上传完图片后，可以直接在前端显示
+7、以上所有数据请求必须使用ajax完成
 ```
