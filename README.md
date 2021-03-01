@@ -6,9 +6,11 @@
   - 3、监听网络端口
   
 ## 2、koa框架
-- koa四大核心对象：
+- ### koa四大核心对象：
   Application、Context、Request、Response
-- 中间件：koa-static-cache、nunjucks、koa-router、koa-body
+- ### 中间件
+ koa-static-cache、nunjucks、koa-router、koa-body
+- ### 从浏览器输入url到页面呈现的过程
 
 ## 3、mysql应用
 - 数据库操作：增删改查、排序、分页
