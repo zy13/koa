@@ -32,7 +32,7 @@ app.use(async (ctx,next) => {
 router.get('/users', async ctx => {
   console.log(ctx.state.user)
   ctx.body = [
-    {id: 1, name: 'zy'}
+    ...ctx.state.user
   ]
 })
 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button>文件上传</button>
+  <ul></ul>
+</body>
+<script>
+  const ul = document.querySelector('ul')
+  const btn = document.querySelector('button')
+  const input = document.createElement('input')
+  input.type = 'file'
+
+  // 获取图片
+  getPhotos()
+  function getPhotos() {
+    const xhr = new XMLHttpRequest()
+    xhr.open('get','/getphotos')
+    xhr.setRequestHeader('Authorization', 'Bearer '+localStorage.getItem('token'))
+    xhr.onload = function() {
+      const photos = JSON.parse(xhr.responseText)
+      
+      console.log(photos)
+      photos.map(photo => {
+        let li = document.createElement('li')
+        li.innerHTML = `<img src="${photo.path}"/>`
+        ul.appendChild(li)
+      })
+    }
+    xhr.send()
+  }
+
+  // 文件上传
+  btn.onclick = function() {
+    input.click()
+  }
+  input.onchange = function() {
+    const xhr = new XMLHttpRequest()
+    const fd = new FormData()
+    fd.append('photo', this.files.item(0))
+
+    xhr.open('post', '/upload')
+    xhr.setRequestHeader('Authorization', 'Bearer '+localStorage.getItem('token'))
+    xhr.onload = function() {
+      console.log(xhr.responseText)
+      let li = document.createElement('li')
+      li.innerHTML = `<img src="${xhr.responseText}"/>`
+      ul.appendChild(li)
+    }
+    xhr.send(fd)
+  }
+</script>
+</html>

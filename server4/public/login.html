@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <span>用户名:</span>
+    <input type="text">
+  </div>
+  <div>
+    <span>密码:</span>
+    <input type="password">
+  </div>
+  <div>
+    <button>登录</button>
+  </div>
+</body>
+<script>
+  const btn = document.querySelector('button')
+  btn.onclick = function() {
+    const xhr = new XMLHttpRequest()
+    const inputs = document.querySelectorAll('input')    
+    const fd = new FormData()
+
+    fd.append('username', inputs[0].value)
+    fd.append('password', inputs[1].value)
+   
+    xhr.open('post', '/login')
+    xhr.onload = function() {
+      let token = xhr.getResponseHeader('Authorization')
+      localStorage.setItem('token', token)
+      window.location.href = '/public/user.html'
+    }
+    xhr.send(fd)
+  }
+  
+</script>
+</html>
