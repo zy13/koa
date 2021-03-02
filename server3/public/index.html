@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button>登录</button>
+  <button>获取登录信息</button>
+</body>
+<script>
+  let btns = document.querySelectorAll('button')
+
+  // 登录
+  btns[0].onclick = function() {
+    let xhr = new XMLHttpRequest()
+    xhr.open('post', '/login')
+    xhr.send()
+    xhr.onload = function() {
+      let token = xhr.getResponseHeader('Authorization')
+      localStorage.setItem('token', token)
+      console.log(token)
+    }
+  }
+
+  // 获取登录信息
+  btns[1].onclick = function() {
+    let xhr = new XMLHttpRequest()
+    xhr.open('get', '/users')
+    xhr.onload = function() {
+      console.log(xhr.responseText)
+    }
+    let token = localStorage.getItem('token')
+    // 如果使用了koa-jwt，那么 token 一定要带上 Bearer 
+    xhr.setRequestHeader('Authorization', token)
+    xhr.send()
+  }
+</script>
+</html>

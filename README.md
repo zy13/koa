@@ -23,3 +23,10 @@ PATCH
 ```
 
 ## 服务器代理
+
+- 使用http模块实现简单的服务器代理
+- 使用koa-server-http-proxy中间件实现代理
+
+## 基于jwt鉴权
+
+- jsonwebtoken模块
