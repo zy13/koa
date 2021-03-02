@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button>按钮1</button>
+</body>
+<script>
+  const btn = document.querySelector('button')
+  /**
+   * 跨域请求：
+   * 1、服务器localhost:7777 向服务器localhost:8888请求数据
+   * 跨域解决：服务器localhost:8888相应接口设置ctx.set('Access-Control-Allow-Origin', '*')
+   * 或者ctx.set('Access-Control-Allow-Origin', 'http://localhost:7777')
+   * "*"表示允许所有的请球源访问资源，后者表示允许指定域名访问
+   */
+  btn.onclick = function () {
+    // get请求-cors简单请求
+    // getData()
+
+    // put请求-cors预检请求
+    putData()
+  }
+
+  function getData() {
+    const xhr = new XMLHttpRequest()
+    xhr.open('get','http://localhost:8888/users') // http://localhost:7777/users => http://localhost:7777/8888
+    xhr.send()
+    xhr.onload = function() {
+      console.log(xhr.responseText)
+    }
+  }
+
+  function putData() {
+    const xhr = new XMLHttpRequest()
+    xhr.open('put','http://localhost:8888/users') // http://localhost:7777/users => http://localhost:7777/8888
+    xhr.send()
+    xhr.onload = function() {
+      console.log(xhr.responseText)
+    }
+  }
+
+</script>
+</html>

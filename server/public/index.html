@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<button>按钮</button>
+</body>
+<script>
+/**
+ * 以面向对象的方式来处理请求和响应：
+ * fetch
+ * Headers
+ * Request
+ * Response 
+ */
+const btn = document.querySelector('button')
+
+
+btn.onclick = async function fetchFn() {
+	// get请求
+	// const res = await fetch('/users') // fetch会对返回的内容进行解析，并封装成一个Response对象
+	
+	// post请求
+	const req = new Request('/users', {
+		// method: 'put',
+		method: 'post',
+		body: JSON.stringify({
+			name: 'zy-0'
+		})
+	})
+	const res = await fetch(req)
+	
+	const contentType = res.headers.get('content-type') // 获取返回的数据类型：文本类型text/plain;对象application/json;
+
+	if(res.headers.get('content-type').startsWith('text/plain')) { // 返回的数据是文本类型		
+		const data = await res.text()
+		console.log(data)
+	}
+
+	if(res.headers.get('content-type').startsWith('application/json')) { // 返回的数据是json格式	
+		const data = await res.json()
+		console.log(data)
+	}
+}
+
+</script>
+</html>
