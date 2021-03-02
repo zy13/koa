@@ -11,9 +11,19 @@
 </body>
 <script>
   const btn = document.querySelector('button')
+  // btn.onclick = function () {
+  //   const xhr = new XMLHttpRequest()
+  //   xhr.open('get','/users') // http://localhost:9999/users => http://localhost:8888/users
+  //   xhr.send()
+  //   xhr.onload = function() {
+  //     console.log(xhr.responseText)
+  //   }
+  // }
+
+  // 请求代理服务器
   btn.onclick = function () {
     const xhr = new XMLHttpRequest()
-    xhr.open('get','/users') // http://localhost:9999/users => http://localhost:8888/users
+    xhr.open('get','/api/users') // http://localhost:9999/users => http://localhost:8888/users
     xhr.send()
     xhr.onload = function() {
       console.log(xhr.responseText)
