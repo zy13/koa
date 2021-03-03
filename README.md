@@ -28,9 +28,9 @@
 - koa-server-http-proxy中间件
 - jsonwebtoken库生成token
 - koa-jwt中间件鉴权
-## axio.js库
+## 7、axio.js库
 
-## 7、axio.js：https://www.npmjs.com/package/axios
+axio.js：https://www.npmjs.com/package/axios
 
 - axios请求数据方式
 - axios的defaults配置
