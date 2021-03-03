@@ -17,9 +17,27 @@
 
 ## 4、文件上传及用户鉴权
 
-## 5 前后端交互
+## 5、前后端交互
 - ### ajax之XMLHttpRequest和Fetch
 - ### XMLHttpRequest实现文件上传
 - ### fetch实现文件上传
 
 ## 6、跨域解决方案，jwt鉴权
+- 设置cors
+- nodeji基于http模块向服务器发送请求：同服务器之间通信不存在跨域问题
+- koa-server-http-proxy中间件
+- jsonwebtoken库生成token
+- koa-jwt中间件鉴权
+## axio.js库
+
+## 7、axio.js：https://www.npmjs.com/package/axios
+
+- axios请求数据方式
+- axios的defaults配置
+- axios的头部信息设置
+- axios的拦截器
+
+## 8、web即时聊天系统
+- 长轮询
+- SSE服务器推送
+- websocket
