@@ -23,3 +23,11 @@
 - ### fetch实现文件上传
 
 ## 6、跨域解决方案，jwt鉴权
+## axio.js库
+
+axio.js：https://www.npmjs.com/package/axios
+
+- axios请求数据方式
+- axios的defaults配置
+- axios的头部信息设置
+- axios的拦截器

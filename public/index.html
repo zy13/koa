@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button>登陆</button>
+  <button>获取数据</button>
+</body>
+<script src="./js/axios.min.js"></script>
+<script>
+  // 静态配置，只执行一次之后不会更改
+  axios.defaults.baseURL = '/api'
+  // axios.defaults.headers.common['Authorization'] = 'Bearer '+ localStorage.getItem('token') // 使用请求拦截器添加
+
+  // 拦截器
+  // 请求拦截器
+  axios.interceptors.request.use(function(config){
+    config.headers['Authorization'] = 'Bearer '+ localStorage.getItem('token')
+    return config
+  }, function(error) {
+    alert(error.response.data)
+  })
+  // 响应拦截器
+  axios.interceptors.response.use(function(response){
+    return response
+  },function(error){
+    alert(error.response.data)
+  })
+
+
+  const buttons = document.querySelectorAll('button')
+  buttons[0].onclick = async function() {
+    let rs = await axios({
+      method: 'post',
+      url: '/login',
+      data: {
+        username: 'zy',
+        password: '123'
+      }
+    })
+    localStorage.setItem('token', rs.headers['authorization'])
+    alert(rs.data)
+  }
+  buttons[1].onclick = async function() {
+  //  try {
+  //   let rs = await axios.get('/user', {
+  //     // headers: {
+  //     //   Authorization: 'Bearer '+localStorage.getItem('token')
+  //     // }
+  //   })
+  //   console.log(rs)
+  //   alert(rs.data)
+  //  }catch(e) {
+  //    alert(e.response.data)
+  //  }
+    let rs = await axios.get('/user')
+    alert(rs.data)
+  }
+</script>
+</html>

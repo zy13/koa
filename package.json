@@ -18,6 +18,15 @@
   },
   "homepage": "https://github.com/zy13/koa-test#readme",
   "devDependencies": {
-    "koa": "^2.5.1"
+    "axios": "^0.21.1",
+    "koa": "^2.13.1",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "koa-body": "^4.2.0",
+    "koa-jwt": "^4.0.0",
+    "koa-router": "^10.0.0",
+    "koa-static-cache": "^5.1.4"
   }
 }
