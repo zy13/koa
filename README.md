@@ -17,13 +17,13 @@
 
 ## 4、文件上传及用户鉴权
 
-## 5 前后端交互
+## 5、前后端交互
 - ### ajax之XMLHttpRequest和Fetch
 - ### XMLHttpRequest实现文件上传
 - ### fetch实现文件上传
 
 ## 6、跨域解决方案，jwt鉴权
-## axio.js库
+## 7、axio.js库
 
 axio.js：https://www.npmjs.com/package/axios
 
