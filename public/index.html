@@ -26,46 +26,17 @@
     addUser()
   }
 
-  // getUsers()
+  // 长轮询标准化方式：EventSource类
   btn[1].onclick = async function() {
-    // await getUsers()
-
-    // clearInterval(timer)
-    // // 轮询：每隔1s就开始发送请求，不管上次请求是否完成
-    // timer = setInterval(() => {
-    //   getUsers()
-    // }, 1000)
-
-    await pollingRequest()
-  }
-
-  // 长轮询
-  // 在服务端在没有新的返回数据情况下不会立即响应，而会挂起，直到有数据或即将超时
-  // 实现也不复杂，同时相对轮询，节约带宽。
-  async function pollingRequest() {
-    await getUsers()
-    // 当上一次的请求完成以后，再调用
-    setTimeout(() => {
-      pollingRequest()
-    }, 1000)
-  }
-
-  function getUsers() {
-    return new Promise(resolve => {
-      const xhr = new XMLHttpRequest()
-      xhr.open('get',`/users?count=${count}`)
-      xhr.onload = function() {
-        let users = JSON.parse(this.responseText)        
-        count = users.length
-        ul.innerHTML = ''
-        users.map(user => {
-          const li = document.createElement('li')
-          li.innerHTML = user.username
-          ul.appendChild(li)
-        })
-        resolve()
-      }
-      xhr.send()
+    let source = new EventSource('/users')
+    source.addEventListener('ping', e => {
+      let users = JSON.parse(e.data).users
+      ul.innerHTML = ''
+      users.map(user => {
+        const li = document.createElement('li')
+        li.innerHTML = user.username
+        ul.appendChild(li)
+      })
     })
   }
 

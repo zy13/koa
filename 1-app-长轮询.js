@@ -36,12 +36,9 @@ router.get('/users', koaBody(), async ctx => {
     await sleep() // time: pending
   }
 
-  // 长轮询-标准化: EventSource
-  ctx.set('content-type', 'text/event-stream')
   return new Promise(resolve => {
     setTimeout(() => {
-      // ping值可以修改
-      ctx.body = `event:ping\ndata:{"users":${JSON.stringify(users)}}\n\n`
+      ctx.body = users
       resolve()
     }, 2000);
   })  

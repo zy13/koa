@@ -18,9 +18,10 @@
   },
   "homepage": "https://github.com/zy13/koa-test#readme",
   "devDependencies": {
-    "koa": "^2.13.1"
+    
   },
   "dependencies": {
+    "koa": "^2.13.1",
     "koa-body": "^4.2.0",
     "koa-router": "^10.0.0",
     "koa-static-cache": "^5.1.4"
